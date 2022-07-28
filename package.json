@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsup-node src/index.ts --format cjs,esm --dts",
-    "lint": "eslint --fix ./src/**/*.ts",
+    "lint": "prettier --write ./src/**/*.ts && eslint --fix ./src/**/*.ts",
     "prepare": "husky install",
     "prepublish": "build",
     "publish": "npm publish",
