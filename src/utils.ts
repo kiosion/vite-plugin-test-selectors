@@ -1,25 +1,49 @@
-const getRegexps = (id: string, selectors: string[]) => {
+const getRegexps = (type: string, selectors: string[]) => {
   const arr: RegExp[] = [];
   selectors.forEach((selector) => {
-    // Only support svelte files for now
-    if (id.toLowerCase().endsWith('svelte')) {
-      // <Element data-test-id="something" /> or <Element data-test-header />
-      arr.push(
-        new RegExp(`(?:\\s)+${selector}-(?:.{1,}?[\\s=])(?:(?:["'].*?["'])*|.*?(?=[\\s/>]))`, 'm')
-      );
-      // attr_dev(element, 'data-test-id', 'something');
-      arr.push(
-        new RegExp(
-          `^.*attr_dev.*?["']${selector}-(?:.+?)["'],(?:\\s)*(?:(?:["'](?:.*?\\w){0,1}["'])|(?:.*\\w)).*$(?:\\n{0,1})`,
-          'm'
-        )
-      );
-      // ...{ props: 'something', 'data-test-id', 'something' | boolean }...
-      arr.push(new RegExp(`,{0,1}\\s*?["']${selector}-(?:.+?)["'](?::\\s{0,1}(?:.*\\w))`, 'm'));
+    switch (type) {
+      case 'html':
+        arr.push(
+          new RegExp(
+            `(?:\\s)+${selector}-(?:.*?(?:=|(?=\\s)))(?:(?:["'].*?["'])*|.*?(?=[\\s\\n/>]))`,
+            'm'
+          )
+        );
+        break;
+      case 'svelte':
+        arr.push(
+          new RegExp(
+            `^.*attr_dev.*?["']${selector}-(?:.+?)["'],(?:\\s)*(?:(?:["'](?:.*?\\w){0,1}["'])|(?:.*\\w)).*$(?:\\n{0,1})`,
+            'm'
+          )
+        );
+        arr.push(new RegExp(`,{0,1}\\s*?["']${selector}-(?:.+?)["'](?::\\s{0,1}(?:.*\\w))`, 'm'));
+        break;
+      case 'jsx':
+      case 'tsx':
+        arr.push(
+          new RegExp(
+            `^.*?["']${selector}-(?:.*?["']):\\s*?(?:(?:true)|(?:["'].*?["'])),{0,1}\\s*?$\\n{0,1}`,
+            'm'
+          )
+        );
+        break;
+      case 'vue':
+        arr.push(
+          new RegExp(
+            `(?:\\s)+${selector}-(?:.*?(?:=|(?=\\s)))(?:(?:["'].*?["'])*|.*?(?=[\\s\\n/>]))`,
+            'm'
+          )
+        );
+        break;
     }
   });
-
   return arr;
+};
+
+const getFiletype = (id: string) => {
+  const res = id.match(new RegExp('[^\\.]+$'));
+  return res ? res[0] : '';
 };
 
 export const endsWith = (id: string, suffixes: string[] = []) => {
@@ -29,12 +53,14 @@ export const endsWith = (id: string, suffixes: string[] = []) => {
 };
 
 export const stripSelectors = (id: string, code: string, selectors: string[] = []) => {
-  const regexeps = getRegexps(id, selectors);
-  regexeps.forEach((regexp) => {
-    let match: RegExpMatchArray | null;
-    while ((match = regexp.exec(code)) !== null) {
-      code = code.replace(match[0], '');
-    }
-  });
+  const type = getFiletype(id);
+  const regexeps = getRegexps(type, selectors);
+  regexeps &&
+    regexeps.forEach((regexp) => {
+      let match: RegExpMatchArray | null;
+      while ((match = regexp.exec(code)) !== null) {
+        code = code.replace(match[0], '');
+      }
+    });
   return code;
 };
