@@ -1,5 +1,9 @@
-# vite-plugin-test-selectors
-Vite plugin for stripping test attributes in production builds
+<div align='center'>
+  <h1>vite-plugin-test-selectors</h1>
+  <p>Vite plugin for stripping test attributes in production builds</p>
+
+  <img src='https://user-images.githubusercontent.com/34040324/181411503-a9d6ed3e-75ba-4258-85be-7070a276d496.png' width='750' alt='Demo' />
+</div>
 
 ## Installation
 
