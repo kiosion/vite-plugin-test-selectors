@@ -1,0 +1,60 @@
+{
+  "name": "vite-plugin-test-selectors",
+  "version": "0.0.1",
+  "description": "Vite plugin for stripping test selectors in production builds",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsup-node src/index.ts --format cjs,esm --dts",
+    "lint": "eslint --fix ./src/**/*.ts",
+    "prepare": "husky install",
+    "prepublish": "build",
+    "publish": "npm publish",
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiosion/vite-plugin-test-attributes.git"
+  },
+  "keywords": [
+    "vite-plugin",
+    "test selectors"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "author": "kiosion",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kiosion/vite-plugin-test-attributes/issues"
+  },
+  "peerDependencies": {
+    "vite": "^3.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.2.0",
+    "typescript": "^4.7.4",
+    "vitest": "^0.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
