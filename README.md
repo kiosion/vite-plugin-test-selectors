@@ -7,8 +7,7 @@
 
 ## Installation
 
-> **Warning:**
-> This plugin is still in development. Please don't use it in any production setting.
+> **Warning:** This plugin is still in development
 
 Install using yarn or npm:
 ```bash

@@ -1,0 +1,65 @@
+counter = new Counter({
+			props: { "data-test-counter": true },
+			$$inline: true
+		});
+
+	const block = {
+		c: function create() {
+			main = element("main");
+			div0 = element("div");
+			a0 = element("a");
+			img0 = element("img");
+			t0 = space();
+			a1 = element("a");
+			img1 = element("img");
+			t1 = space();
+			h1 = element("h1");
+			h1.textContent = "Vite + Svelte";
+			t3 = space();
+			div1 = element("div");
+			create_component(counter.$$.fragment);
+			t4 = space();
+			p0 = element("p");
+			t5 = text("Check out ");
+			a2 = element("a");
+			a2.textContent = "SvelteKit";
+			t7 = text(", the official Svelte app framework powered by Vite!");
+			t8 = space();
+			p1 = element("p");
+			p1.textContent = "Click on the Vite and Svelte logos to learn more";
+			if (!src_url_equal(img0.src, img0_src_value = "/vite.svg")) attr_dev(img0, "src", img0_src_value);
+			attr_dev(img0, "class", "logo s-XsEmFtvddWTw");
+			attr_dev(img0, "alt", "Vite Logo");
+			add_location(img0, file, 7, 6, 206);
+			attr_dev(a0, "href", "https://vitejs.dev");
+			attr_dev(a0, "target", "_blank");
+			attr_dev(a0, "class", "s-XsEmFtvddWTw");
+			add_location(a0, file, 6, 4, 153);
+			if (!src_url_equal(img1.src, img1_src_value = svelteLogo)) attr_dev(img1, "src", img1_src_value);
+			attr_dev(img1, "class", "logo svelte s-XsEmFtvddWTw");
+			attr_dev(img1, "alt", "Svelte Logo");
+			add_location(img1, file, 10, 6, 325);
+			attr_dev(a1, "href", "https://svelte.dev");
+			attr_dev(a1, "target", "_blank");
+			attr_dev(a1, "class", "s-XsEmFtvddWTw");
+			add_location(a1, file, 9, 4, 272);
+			attr_dev(div0, "class", "s-XsEmFtvddWTw");
+			add_location(div0, file, 5, 2, 143);
+			attr_dev(h1, "data-test-id", "title");
+			attr_dev(h1, "class", "s-XsEmFtvddWTw");
+			add_location(h1, file, 13, 2, 408);
+			attr_dev(div1, "class", "card s-XsEmFtvddWTw");
+			attr_dev(div1, "data-test-id", "counter");
+			add_location(div1, file, 15, 2, 455);
+			attr_dev(a2, "href", "https://github.com/sveltejs/kit#readme");
+			attr_dev(a2, "target", "_blank");
+			attr_dev(a2, "class", "s-XsEmFtvddWTw");
+			add_location(a2, file, 20, 14, 561);
+			attr_dev(p0, "class", "s-XsEmFtvddWTw");
+			add_location(p0, file, 19, 2, 543);
+			attr_dev(p1, "class", "read-the-docs s-XsEmFtvddWTw");
+			add_location(p1, file, 23, 2, 702);
+			attr_dev(main, "data-test-main", "");
+			attr_dev(main, "class", "s-XsEmFtvddWTw");
+			add_location(main, file, 4, 0, 119);
+		},

@@ -1,0 +1,87 @@
+className: "App",
+    "data-test-main": true,
+    children: [/*#__PURE__*/_jsxDEV("div", {
+      children: [/*#__PURE__*/_jsxDEV("a", {
+        href: "https://vitejs.dev",
+        target: "_blank",
+        children: /*#__PURE__*/_jsxDEV("img", {
+          src: "/vite.svg",
+          className: "logo",
+          alt: "Vite logo"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 12,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 11,
+        columnNumber: 9
+      }, this), /*#__PURE__*/_jsxDEV("a", {
+        href: "https://reactjs.org",
+        target: "_blank",
+        children: /*#__PURE__*/_jsxDEV("img", {
+          src: reactLogo,
+          className: "logo react",
+          alt: "React logo"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 15,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 14,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 10,
+      columnNumber: 7
+    }, this), /*#__PURE__*/_jsxDEV("h1", {
+      children: "Vite + React"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 18,
+      columnNumber: 7
+    }, this), /*#__PURE__*/_jsxDEV("div", {
+      className: "card",
+      "data-test-id": "counter",
+      children: [/*#__PURE__*/_jsxDEV("button", {
+        onClick: () => setCount(count => count + 1),
+        children: ["count is ", count]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 20,
+        columnNumber: 9
+      }, this), /*#__PURE__*/_jsxDEV("p", {
+        children: ["Edit ", /*#__PURE__*/_jsxDEV("code", {
+          children: "src/App.tsx"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 24,
+          columnNumber: 16
+        }, this), " and save to test HMR"]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 23,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 19,
+      columnNumber: 7
+    }, this), /*#__PURE__*/_jsxDEV("p", {
+      className: "read-the-docs",
+      children: "Click on the Vite and React logos to learn more"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 27,
+      columnNumber: 7
+    }, this)]
+  }, void 0, true, {
+    fileName: _jsxFileName,
+    lineNumber: 9,
+    columnNumber: 5
+  }, this);
+}
