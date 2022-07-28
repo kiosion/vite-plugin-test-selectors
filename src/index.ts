@@ -15,7 +15,7 @@ export default function StripTestSelectors(config: PluginConfig = {}): Plugin {
     transform(src, id) {
       if (endsWith(id, config.suffixes)) {
         return {
-          code: stripSelectors(src, config.selectors),
+          code: stripSelectors(id, src, config.selectors),
           map: null
         };
       }

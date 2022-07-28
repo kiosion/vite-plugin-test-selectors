@@ -2,17 +2,17 @@
   "name": "vite-plugin-test-selectors",
   "version": "0.0.1",
   "description": "Vite plugin for stripping test selectors in production builds",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "*.d.ts"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup-node src/index.ts --format cjs,esm --dts",
+    "build": "yarn lint && rimraf ./dist && tsup-node ./src/index.ts --format cjs,esm --dts ./src/index.ts",
     "lint": "prettier --write ./src/**/*.ts && eslint --fix ./src/**/*.ts",
     "prepare": "husky install",
-    "prepublish": "build",
+    "prepublish": "yarn build",
     "publish": "npm publish",
     "test": "vitest run"
   },
@@ -27,7 +27,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
     "./*": "./*"
