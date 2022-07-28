@@ -1,13 +1,19 @@
 <div align='center'>
   <h1>vite-plugin-test-selectors</h1>
-  <p>Vite plugin for stripping test attributes in production builds</p>
+  <p>Simple vite plugin for stripping test selectors in production builds</p>
 
   <img src='https://user-images.githubusercontent.com/34040324/181411503-a9d6ed3e-75ba-4258-85be-7070a276d496.png' width='750' alt='Demo' />
 </div>
 
+## Supported frameworks
+
+- React
+- Vue
+- Svelte
+
 ## Installation
 
-> **Warning:** This plugin is still in development
+> **Warning:** This plugin is still in development!
 
 Install using yarn or npm:
 ```bash
@@ -53,12 +59,6 @@ Suffixes are also optional, and are an array of any valid file extensions. They 
 
 For example usage, check out the [included demos](demos/).
 
-## Supported frameworks
-
-- React (in progress)
-- Vue (in progress)
-- Svelte
-
 ## Testing
 
 ```bash
@@ -67,4 +67,4 @@ yarn test
 
 ## Credits
 
-Authors: [kiosion](https://github.com/kiosion/vite-plugin-test-selectors);
+Authors: [kiosion](https://github.com/kiosion/vite-plugin-test-selectors)
