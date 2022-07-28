@@ -3,3 +3,4 @@
 **/.husky
 **/.github
 **/node_modules
+**/test
