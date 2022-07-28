@@ -1,4 +1,5 @@
 **/lib
 **/demos
 **/.husky
+**/.github
 **/node_modules
