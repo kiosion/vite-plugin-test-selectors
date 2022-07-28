@@ -10,10 +10,10 @@
   ],
   "scripts": {
     "build": "yarn lint && rimraf ./dist && tsup-node ./src/index.ts --format cjs,esm --dts ./src/index.ts",
-    "lint": "prettier --write ./src/**/*.ts && eslint --fix ./src/**/*.ts",
-    "prepublish": "yarn build",
+    "lint": "prettier --write {src,test}/**/*.ts && eslint --fix {src,test}/**/*.ts",
+    "prepublishOnly": "yarn build && yarn test",
     "publish": "npm publish",
-    "prepare": "yarn husky install && chmod ug+x .husky/* && yarn husky add .husky/pre-commit 'yarn lint-staged'",
+    "init": "yarn husky install && chmod ug+x .husky/* && yarn husky add .husky/pre-commit 'yarn lint-staged'",
     "test": "vitest run"
   },
   "repository": {
@@ -43,6 +43,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
+    "@vitest/ui": "^0.19.1",
     "eslint": "^8.20.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",

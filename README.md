@@ -7,8 +7,7 @@
 
 ## Installation
 
-> **Warning:**
-> This plugin is still in development. Please don't use it in any production setting.
+> **Warning:** This plugin is still in development
 
 Install using yarn or npm:
 ```bash
@@ -48,13 +47,6 @@ The provided selectors are optional (defaulting to only 'data-test'), and are pa
 <Component class="someClass" data-test />
 <!-- Will be stripped -->
 <Component class="someClass" data-test-component data-test-id="someId" />
-```
-```js
-// Will not be stripped
-attr_dev(div0, "data-test", true);
-// Will be stripped
-attr_dev(div0, "data-test-component", true);
-attr_dev(div0, "data-test-id", "someId");
 ```
 
 Suffixes are also optional, and are an array of any valid file extensions. They default to '.jsx', '.tsx', '.vue', and '.svelte'.
