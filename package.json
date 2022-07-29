@@ -12,6 +12,7 @@
     "build": "yarn lint && rimraf ./dist && tsup-node ./src/index.ts --format cjs,esm --dts ./src/index.ts",
     "lint": "prettier --write {src,test}/**/*.ts && eslint --fix {src,test}/**/*.ts",
     "init": "yarn husky install && chmod ug+x .husky/* && yarn husky add .husky/pre-commit 'yarn lint-staged'",
+    "publish": "npm publish",
     "test": "vitest run"
   },
   "repository": {
