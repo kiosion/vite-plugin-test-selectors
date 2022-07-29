@@ -8,6 +8,7 @@ on:
 
 jobs:
   lint-check:
+    name: Lint check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       
-      - name: Run prettier
+      - name: Run prettier --check
         run: yarn prettier --check "{src,test}/**/*.ts"
       
       - name: Run eslint

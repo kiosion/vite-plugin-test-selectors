@@ -11,14 +11,12 @@
   "scripts": {
     "build": "yarn lint && rimraf ./dist && tsup-node ./src/index.ts --format cjs,esm --dts ./src/index.ts",
     "lint": "prettier --write {src,test}/**/*.ts && eslint --fix {src,test}/**/*.ts",
-    "prepublishOnly": "yarn build && yarn test",
-    "publish": "npm publish",
     "init": "yarn husky install && chmod ug+x .husky/* && yarn husky add .husky/pre-commit 'yarn lint-staged'",
     "test": "vitest run"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kiosion/vite-plugin-test-attributes.git"
+    "url": "git+https://github.com/kiosion/vite-plugin-test-selectors.git"
   },
   "keywords": [
     "vite-plugin",
@@ -35,7 +33,7 @@
   "author": "kiosion",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kiosion/vite-plugin-test-attributes/issues"
+    "url": "https://github.com/kiosion/vite-plugin-test-selectors/issues"
   },
   "peerDependencies": {
     "vite": "^3.0.0"
@@ -44,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "@vitest/ui": "^0.19.1",
+    "bumpp": "^8.2.1",
     "eslint": "^8.20.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",

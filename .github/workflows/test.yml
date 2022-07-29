@@ -1,0 +1,12 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  vitest:
+    name: Vitest
+    uses: ./.github/workflows/vitest.yml

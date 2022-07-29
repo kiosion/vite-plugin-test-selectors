@@ -1,10 +1,7 @@
 name: Vitest
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_call:
 
 jobs:
   vitest-run:
