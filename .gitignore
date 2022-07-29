@@ -15,3 +15,4 @@ build/Release
 **/.env
 **/.env.test
 **/dist
+**/.vscode
