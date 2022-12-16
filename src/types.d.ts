@@ -1,5 +1,5 @@
 interface PluginConfig {
   dev?: boolean;
-  suffixes?: string[];
+  suffixes?: Array<'html' | 'svelte' | 'jsx' | 'tsx' | 'vue'>;
   selectors?: string[];
 }

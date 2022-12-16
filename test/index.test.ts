@@ -1,15 +1,16 @@
 import { describe, it, expect } from 'vitest';
+import { getFiletype, getRegexps, endsWith } from '@/utils';
+import stripSelectors from '@/transform';
 import fs from 'fs';
-import * as Utils from '../src/utils';
 
-describe('getFiletype()', () => {
+describe('Util | getFiletype', () => {
   it('should correctly parse filenames', async () => {
     const extentions = ['js', 'jsx', 'ts', 'tsx', 'vue', 'svelte', 'html'];
 
     // Parse 'normal' filenames
     ['test.js', 'test.jsx', 'test.ts', 'test.tsx', 'test.vue', 'test.svelte', 'test.html'].forEach(
       (filename, index) => {
-        const filetype = Utils.getFiletype(filename);
+        const filetype = getFiletype(filename);
         expect(filetype).toBe(extentions[index]);
       }
     );
@@ -18,13 +19,13 @@ describe('getFiletype()', () => {
     [
       'test_test.js',
       'test-test.jsx',
-      'test_test.ts',
-      'test-test.tsx',
+      '_test_test.ts',
+      'test-test-.tsx',
       'test_test.vue',
-      'test-test.svelte',
-      'test_test.html'
+      'test-_-test.svelte',
+      'test_test__.html'
     ].forEach((filename, index) => {
-      const filetype = Utils.getFiletype(filename);
+      const filetype = getFiletype(filename);
       expect(filetype).toBe(extentions[index]);
     });
 
@@ -38,47 +39,47 @@ describe('getFiletype()', () => {
       'test.test.svelte',
       'test.test.html'
     ].forEach((filename, index) => {
-      const filetype = Utils.getFiletype(filename);
+      const filetype = getFiletype(filename);
       expect(filetype).toBe(extentions[index]);
     });
   });
 });
 
-describe('getRegexps()', () => {
+describe('Utils | getRegexps', () => {
   it('should return regexps for supported filetypes', async () => {
     const supported = ['jsx', 'tsx', 'vue', 'svelte', 'html'];
     const unsupported = ['js', 'css', 'scss', 'null', ''];
 
     supported.forEach((type) => {
-      const regexps = Utils.getRegexps(type, ['data-test']);
+      const regexps = getRegexps(type, ['data-test']);
       expect(regexps).toBeDefined();
       expect(regexps.length).toBeGreaterThanOrEqual(1);
     });
 
     unsupported.forEach((type) => {
-      const regexps = Utils.getRegexps(type, ['data-test']);
+      const regexps = getRegexps(type, ['data-test']);
       expect(regexps).toStrictEqual([]);
     });
   });
 });
 
-describe('endsWith()', () => {
+describe('Utils | endsWith', () => {
   it('should correctly determine if a filepath ends with a certain suffix', async () => {
     [
       '/home/kio/someDirectory/someProject/src/components/component.tsx',
       'C:\\home\\kio\\someDirectory\\someProject\\src\\components\\component.tsx',
       '/home/kio/someDirectory/someProject/src/components/component.something.tsx',
       'C:\\home\\kio\\someDirectory\\someProject\\src\\components\\component.something.tsx'
-    ].forEach((file) => expect(Utils.endsWith(file, ['.tsx'])).toBe(true));
+    ].forEach((file) => expect(endsWith(file, ['.tsx'])).toBe(true));
   });
 });
 
-describe('stripSelectors()', () => {
+describe('Transforms | stripSelectors', () => {
   it('should not transform code without selectors', async () => {
     const code = fs.readFileSync('./test/code/tsx.txt').toString();
     expect(code).toBeDefined();
 
-    const transformed = Utils.stripSelectors('/somePath/component.tsx', code, []);
+    const transformed = stripSelectors('/somePath/component.tsx', code, []);
     expect(transformed).toBeDefined();
     expect(transformed).toBe(code);
   });
@@ -87,7 +88,7 @@ describe('stripSelectors()', () => {
     let code: string | undefined = fs.readFileSync('./test/code/tsx.txt')?.toString();
     expect(code).toBeDefined();
 
-    let transformed: string | undefined = Utils.stripSelectors('/somePath/component.tsx', code, [
+    let transformed: string | undefined = stripSelectors('/somePath/component.tsx', code, [
       'data-test'
     ]);
     expect(transformed).toBeDefined();
@@ -102,7 +103,7 @@ describe('stripSelectors()', () => {
     code = fs.readFileSync('./test/code/svelte.txt')?.toString();
     expect(code).toBeDefined();
 
-    transformed = Utils.stripSelectors('/somePath/component.svelte', code, ['data-test']);
+    transformed = stripSelectors('/somePath/component.svelte', code, ['data-test']);
     expect(transformed).toBeDefined();
     expect(transformed).not.toBe(code);
     expect(transformed.match(new RegExp('data-test-\\w+', 'm'))).toBeNull;
@@ -113,7 +114,7 @@ describe('stripSelectors()', () => {
     code = fs.readFileSync('./test/code/vue.txt')?.toString();
     expect(code).toBeDefined();
 
-    transformed = Utils.stripSelectors('/somePath/component.vue', code, ['data-test']);
+    transformed = stripSelectors('/somePath/component.vue', code, ['data-test']);
     expect(transformed).toBeDefined();
     expect(transformed).not.toBe(code);
     expect(transformed.match(new RegExp('data-test-\\w+', 'm'))).toBeNull;
@@ -124,7 +125,7 @@ describe('stripSelectors()', () => {
     const code: string = fs.readFileSync('./test/code/tsx.txt').toString();
     expect(code).toBeDefined();
 
-    const transformed = Utils.stripSelectors('/somePath/component.tsx', code, [
+    const transformed = stripSelectors('/somePath/component.tsx', code, [
       'data-test',
       'some-<>-invalid selector {} []',
       '.*?<.*'

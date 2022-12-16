@@ -1,4 +1,4 @@
-export const getRegexps = (type: string, selectors: string[]) => {
+function getRegexps(type: string, selectors: string[]) {
   const arr: RegExp[] = [];
   selectors.forEach((selector) => {
     switch (type) {
@@ -39,33 +39,17 @@ export const getRegexps = (type: string, selectors: string[]) => {
     }
   });
   return arr;
-};
+}
 
-export const getFiletype = (id: string) => {
+function getFiletype(id: string) {
   const res = id.match(new RegExp('[^\\.]+$'));
   return res ? res[0] : '';
-};
+}
 
-export const endsWith = (id: string, suffixes: string[] = []) => {
+function endsWith(id: string, suffixes: string[] = []) {
   return suffixes.some((suffix) => {
     return id.endsWith(suffix);
   });
-};
+}
 
-export const stripSelectors = (id: string, code: string, selectors: string[] = []) => {
-  selectors.forEach((selector) => {
-    // Ignore illegal chars in selector
-    while (selector.match(/[^a-zA-Z0-9-_]/)) {
-      selector = selector.replace(/[^a-zA-Z0-9-_]/g, '');
-    }
-  });
-  const type = getFiletype(id);
-  const regexeps = getRegexps(type, selectors);
-  regexeps?.forEach((regexp) => {
-    let match: RegExpMatchArray | null;
-    while ((match = regexp.exec(code)) !== null) {
-      code = code.replace(match[0], '');
-    }
-  });
-  return code;
-};
+export { endsWith, getFiletype, getRegexps };
