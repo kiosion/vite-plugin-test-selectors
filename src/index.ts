@@ -1,8 +1,8 @@
-import type { Plugin } from 'vite';
 import { endsWith, stripSelectors } from '@utils';
+import type { Plugin } from 'vite';
 
-const defaultSuffixes = ['.jsx', '.tsx', '.vue', '.svelte', '.html'];
-const defaultSelectors = ['data-test'];
+const defaultSuffixes = ['.jsx', '.tsx', '.vue', '.svelte', '.html'],
+  defaultSelectors = ['data-test'];
 
 export default function StripTestSelectors(config: PluginConfig = {}): Plugin {
   config.suffixes = config.suffixes || defaultSuffixes;
